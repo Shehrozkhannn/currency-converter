@@ -1,0 +1,42 @@
+.main-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-image: url('../../assets/currency-bg.jpg');
+  height: 100vh;
+  .currency-container{
+    height: 400px;
+    width: 600px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 9px;
+    padding: 30px;
+    .title{
+      text-align: center;
+      color: #92701b;
+    }
+    .amount-field{
+      mat-form-field{
+        width: 100%;
+      }  
+    }
+    .converters-fields{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .convert-btn{
+      height: 100px;
+      display: flex;
+      align-items: center;
+      button{
+        height: 44px;
+        width: 100%;
+        background: rgba(189,102,13,1);
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+}
