@@ -6,12 +6,12 @@
   background-image: url('../../assets/currency-bg.jpg');
   height: 100vh;
   .currency-container{
-    height: 400px;
     width: 600px;
     background-color: #fff;
     color: #000;
     border-radius: 9px;
     padding: 30px;
+    position: relative;
     .title{
       text-align: center;
       color: #92701b;
@@ -33,10 +33,52 @@
       button{
         height: 44px;
         width: 100%;
-        background: rgba(189,102,13,1);
+        background: #bd660d;
         color: #fff;
         border: none;
+        cursor: pointer;
       }
     }
+    .loading-container{
+      position: absolute;
+      right: 41%;
+      top: 43%;
+    }
+    .history-section{
+      h4{
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+}
+
+@media (max-width: 1024px) {
+  .currency-container {
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .currency-container {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .converters-fields {
+    flex-direction: column;
+  }
+  .to-field{
+    width: 100%;
+  }
+  .from-field{
+    width: 100%;
+  }
+  mat-form-field{
+    width: 100%;
   }
 }

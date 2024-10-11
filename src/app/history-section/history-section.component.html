@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>HISTORY</h2>
+<mat-dialog-content class="mat-typography">
+  <ul class="list-group" *ngIf="history.length">
+    <li *ngFor="let entry of history" class="list-group-item">
+      {{entry.amount}} {{entry.from}} to {{entry.to}} = {{entry.convertedAmount}} ({{entry.date | date:'short'}})
+    </li>
+  </ul>
+  <div *ngIf="!history.length">
+    <h2>There are no record yet!</h2>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Okay</button>
+    <button mat-button mat-dialog-close style="background-color:#bd660d; color: white;" (click)="clearConversionHistory()">Remove History</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

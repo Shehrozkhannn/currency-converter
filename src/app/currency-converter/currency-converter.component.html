@@ -6,26 +6,47 @@
     <div class="amount-field">
       <mat-form-field appearance="outline">
         <mat-label>Enter Amount</mat-label>
-        <input matInput placeholder="Enter your amount">
+        <input matInput placeholder="Enter your amount" [(ngModel)]="amount">
       </mat-form-field>
     </div>
     <div class="converters-fields">
       <div class="to-field">
         <p>From</p>
-        <mat-select-country>
-        </mat-select-country>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select Currency</mat-label>
+          <mat-select [(value)]="fromCurrency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div>
         <img src="../../assets/loop.png" alt="" width="40" height="40">
       </div>
       <div class="from-field">
         <p>To</p>
-        <mat-select-country>
-        </mat-select-country>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select Currency</mat-label>
+          <mat-select [(value)]="toCurrency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
     <div class="convert-btn">
-      <button>{{'Convert'}}</button>
+      <button  (click)="convert()" [disabled]="isLoading" [disabled]="!amount || !fromCurrency || !toCurrency" 
+      [ngStyle]="{'background-color': (!amount || !fromCurrency || !toCurrency) ? '#d3d3d3' : ''}">{{'Convert'}}</button>
+    </div>
+
+    <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner [diameter]="70"></mat-spinner>
+    </div>
+
+    <div *ngIf="convertedAmount" class="converted-amount">
+      <h3> <b style="color: red;">Converted Amount:</b> {{ convertedAmount }}</h3>
+    </div>
+
+    <div class="history-section">
+      <h4 (click)="showHistory()">Show Conversion History</h4>
     </div>
   </div>
 </div>
