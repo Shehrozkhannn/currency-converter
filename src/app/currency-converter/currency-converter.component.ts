@@ -26,6 +26,7 @@ export class CurrencyConverterComponent {
   toCurrency: any;
   convertedAmount: number | null = null;
   isLoading = false;
+  isAmountTouched: boolean = false;
   history: any[] = [];
   currencies: string[] = [
     "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", 
@@ -39,10 +40,9 @@ export class CurrencyConverterComponent {
     
   }
 
-  convert() {
+  convert(amountInput:any) {
     if (Number(this.amount) && this.fromCurrency && this.toCurrency) {
       this.isLoading = true;
-
       this.currencyService.convertCurrency(this.fromCurrency,this.toCurrency,Number(this.amount)).subscribe({
         next: (result) => {
           this.convertedAmount = result.convertedAmount;
@@ -52,6 +52,7 @@ export class CurrencyConverterComponent {
           this.amount = '';
           this.fromCurrency = '';
           this.toCurrency = '';
+          amountInput = amountInput.valid
         },
         error: () => {
           this.snackBar.open('Error fetching conversion data.', 'Close', { duration: 3000 });
@@ -69,8 +70,11 @@ export class CurrencyConverterComponent {
       convertedAmount,
       date: new Date()
     };
-    this.history.push(newEntry);
-    localStorage.setItem('conversionHistory', JSON.stringify(this.history));
+    const history = [];
+    history.push(newEntry)
+    let conversation:any = localStorage.getItem('conversionHistory');
+    conversation = JSON.parse(conversation);
+    localStorage.setItem('conversionHistory', JSON.stringify(conversation && conversation.length ? [...conversation , ...history] : history));
   }
 
   showHistory(){

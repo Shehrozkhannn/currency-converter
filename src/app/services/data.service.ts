@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  // private apiUrl = 'http://localhost:3006/api'; 
-  private apiUrl = 'https://currency-api-backend.vercel.app/api'; 
+  private apiUrl = 'http://localhost:3006/api'; 
+  // private apiUrl = 'https://currency-api-backend.vercel.app/api'; 
 
   constructor(private http: HttpClient) { }
 

@@ -6,14 +6,12 @@
     <div class="amount-field">
       <mat-form-field appearance="outline">
         <mat-label>Enter Amount</mat-label>
-        <input matInput placeholder="Enter your amount" [(ngModel)]="amount" 
-        #amountInput="ngModel"
-        pattern="^[0-9]*$"
-        required>
-        <mat-error *ngIf="amountInput['invalid'] && amountInput.touched">
+        <input matInput placeholder="Enter your amount" [(ngModel)]="amount" type="number"
+        #amountInput="ngModel">
+        <!-- <mat-error *ngIf="amountInput.invalid && amountInput.touched">
           <span *ngIf="amountInput.errors?.['required']">Amount is required</span>
           <span *ngIf="amountInput.errors?.['pattern']" style="color:red;">Please enter numbers only</span>
-        </mat-error>
+        </mat-error> -->
       </mat-form-field>
     </div>
     <div class="converters-fields">
@@ -40,7 +38,7 @@
       </div>
     </div>
     <div class="convert-btn">
-      <button  (click)="convert()" [disabled]="!amount || !fromCurrency || !toCurrency || amountInput['invalid'] || isLoading" 
+      <button  (click)="convert(amountInput)" [disabled]="!amount || !fromCurrency || !toCurrency || amountInput.invalid || isLoading" 
       [ngStyle]="{'background-color': (!amount || !fromCurrency || !toCurrency || amountInput['invalid']) ? '#d3d3d3' : ''}">{{'Convert'}}</button>
     </div>
 
