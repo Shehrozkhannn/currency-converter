@@ -6,7 +6,14 @@
     <div class="amount-field">
       <mat-form-field appearance="outline">
         <mat-label>Enter Amount</mat-label>
-        <input matInput placeholder="Enter your amount" [(ngModel)]="amount">
+        <input matInput placeholder="Enter your amount" [(ngModel)]="amount" 
+        #amountInput="ngModel"
+        pattern="^[0-9]*$"
+        required>
+        <mat-error *ngIf="amountInput['invalid'] && amountInput.touched">
+          <span *ngIf="amountInput.errors?.['required']">Amount is required</span>
+          <span *ngIf="amountInput.errors?.['pattern']" style="color:red;">Please enter numbers only</span>
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="converters-fields">
@@ -33,8 +40,8 @@
       </div>
     </div>
     <div class="convert-btn">
-      <button  (click)="convert()" [disabled]="isLoading" [disabled]="!amount || !fromCurrency || !toCurrency" 
-      [ngStyle]="{'background-color': (!amount || !fromCurrency || !toCurrency) ? '#d3d3d3' : ''}">{{'Convert'}}</button>
+      <button  (click)="convert()" [disabled]="!amount || !fromCurrency || !toCurrency || amountInput['invalid'] || isLoading" 
+      [ngStyle]="{'background-color': (!amount || !fromCurrency || !toCurrency || amountInput['invalid']) ? '#d3d3d3' : ''}">{{'Convert'}}</button>
     </div>
 
     <div *ngIf="isLoading" class="loading-container">
