@@ -8,10 +8,6 @@
         <mat-label>Enter Amount</mat-label>
         <input matInput placeholder="Enter your amount" [(ngModel)]="amount" type="number"
         #amountInput="ngModel">
-        <!-- <mat-error *ngIf="amountInput.invalid && amountInput.touched">
-          <span *ngIf="amountInput.errors?.['required']">Amount is required</span>
-          <span *ngIf="amountInput.errors?.['pattern']" style="color:red;">Please enter numbers only</span>
-        </mat-error> -->
       </mat-form-field>
     </div>
     <div class="converters-fields">
